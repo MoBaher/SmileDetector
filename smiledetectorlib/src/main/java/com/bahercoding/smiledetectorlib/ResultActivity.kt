@@ -1,11 +1,11 @@
-package com.bahercoding.smiledetector
+package com.bahercoding.smiledetectorlib
 
 import android.graphics.BitmapFactory
 import android.net.Uri
 import android.os.Bundle
 import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
-import com.bahercoding.smiledetector.R
+import com.bahercoding.smiledetectorlib.R
 
 class ResultActivity : AppCompatActivity() {
 

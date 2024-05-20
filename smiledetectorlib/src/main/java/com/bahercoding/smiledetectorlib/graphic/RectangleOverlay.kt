@@ -1,11 +1,11 @@
-package com.bahercoding.smiledetector.graphic
+package com.bahercoding.smiledetectorlib.graphic
 
 import android.graphics.Canvas
 import android.graphics.Color
 import android.graphics.Paint
 import android.graphics.Rect
 import com.google.mlkit.vision.face.Face
-import com.bahercoding.smiledetector.utils.CameraUtils
+import com.bahercoding.smiledetectorlib.utils.CameraUtils
 
 class RectangleOverlay(
     private val overlay: GraphicOverlay<*>,

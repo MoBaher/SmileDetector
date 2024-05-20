@@ -3,8 +3,6 @@ package com.bahercoding.smiledetector
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.os.Handler
-import android.os.Looper
 import android.widget.Button
 
 class StartActivity : AppCompatActivity() {
@@ -14,7 +12,7 @@ class StartActivity : AppCompatActivity() {
         setContentView(R.layout.`start_activity`)
         btn = findViewById(R.id.btn)
         btn.setOnClickListener{
-            val intent = Intent(this, MainActivity::class.java)
+            val intent = Intent(this, com.bahercoding.smiledetectorlib.MainActivity::class.java)
             startActivity(intent)
 
         }

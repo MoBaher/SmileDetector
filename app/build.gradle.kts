@@ -36,6 +36,7 @@ android {
     buildFeatures {
         viewBinding = true
     }
+
 }
 
 dependencies {
@@ -50,6 +51,10 @@ dependencies {
     implementation(libs.androidx.camera.lifecycle)
     implementation(libs.play.services.mlkit.face.detection)
     implementation(libs.play.services.vision.common)
+    implementation(project(":smiledetectorlib"))
+    implementation(project(":smiledetectorlib"))
+    implementation(project(":smiledetectorlib"))
+    implementation(project(":smiledetectorlib"))
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)

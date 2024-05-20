@@ -1,4 +1,4 @@
-package com.bahercoding.smiledetector.graphic
+package com.bahercoding.smiledetectorlib.graphic
 /*
  * Copyright (C) The Android Open Source Project
  *

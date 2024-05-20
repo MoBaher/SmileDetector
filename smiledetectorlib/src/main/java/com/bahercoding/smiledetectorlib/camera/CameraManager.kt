@@ -1,4 +1,4 @@
-package com.bahercoding.smiledetector.camera
+package com.bahercoding.smiledetectorlib.camera
 
 import android.app.Activity
 import android.util.Log
@@ -10,8 +10,8 @@ import androidx.camera.lifecycle.ProcessCameraProvider
 import androidx.camera.view.PreviewView
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.LifecycleOwner
-import com.bahercoding.smiledetector.graphic.GraphicOverlay
-import com.bahercoding.smiledetector.utils.CameraUtils
+import com.bahercoding.smiledetectorlib.graphic.GraphicOverlay
+import com.bahercoding.smiledetectorlib.utils.CameraUtils
 import java.util.concurrent.ExecutorService
 import java.util.concurrent.Executors
 

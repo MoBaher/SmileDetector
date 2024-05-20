@@ -12,7 +12,7 @@
         android:layout_height="match_parent"
         app:scaleType="fillCenter"/>
 
-    <com.bahercoding.smiledetector.graphic.GraphicOverlay
+    <com.bahercoding.smiledetectorlib.graphic.GraphicOverlay
         android:id="@+id/viewGraphicOverlay"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>

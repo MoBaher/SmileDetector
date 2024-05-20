@@ -1,4 +1,4 @@
-package com.bahercoding.smiledetector.camera
+package com.bahercoding.smiledetectorlib.camera
 
 import android.annotation.SuppressLint
 import android.graphics.Rect
@@ -7,7 +7,7 @@ import androidx.camera.core.ImageProxy
 import com.google.android.gms.tasks.Task
 import com.google.mlkit.vision.common.InputImage
 import com.google.mlkit.vision.face.Face
-import com.bahercoding.smiledetector.graphic.GraphicOverlay
+import com.bahercoding.smiledetectorlib.graphic.GraphicOverlay
 
 abstract class BaseCameraAnalyzer<T : List<Face>> : ImageAnalysis.Analyzer {
 

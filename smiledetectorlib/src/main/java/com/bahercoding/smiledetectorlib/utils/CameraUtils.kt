@@ -1,10 +1,10 @@
-package com.bahercoding.smiledetector.utils
+package com.bahercoding.smiledetectorlib.utils
 
 import android.content.res.Configuration
 import android.graphics.Rect
 import android.graphics.RectF
 import androidx.camera.core.CameraSelector
-import com.bahercoding.smiledetector.graphic.GraphicOverlay
+import com.bahercoding.smiledetectorlib.graphic.GraphicOverlay
 import kotlin.math.ceil
 
 object CameraUtils {
@@ -41,12 +41,12 @@ object CameraUtils {
         val scaleX = overlay.width.toFloat() / whenLandScapeModeWidth()
         val scaleY = overlay.height.toFloat() / whenLandScapeModeHeight()
         val scale = scaleX.coerceAtLeast(scaleY)
-        this.mScale = scale
+        mScale = scale
 
         val offsetX = (overlay.width.toFloat() - ceil(whenLandScapeModeWidth() * scale)) / 2.0f
         val offsetY = (overlay.height.toFloat() - ceil(whenLandScapeModeHeight() * scale)) / 2.0f
-        this.mOffsetX = offsetX
-        this.mOffsetY = offsetY
+        mOffsetX = offsetX
+        mOffsetY = offsetY
 
         val mappedBox = RectF().apply {
             left = boundingBoxT.right * scale + offsetX

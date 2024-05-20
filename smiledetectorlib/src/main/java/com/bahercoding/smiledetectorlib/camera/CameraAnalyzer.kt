@@ -1,4 +1,4 @@
-package com.bahercoding.smiledetector.camera
+package com.bahercoding.smiledetectorlib.camera
 
 import android.annotation.SuppressLint
 import android.app.Activity
@@ -20,9 +20,9 @@ import com.google.mlkit.vision.common.InputImage
 import com.google.mlkit.vision.face.Face
 import com.google.mlkit.vision.face.FaceDetection
 import com.google.mlkit.vision.face.FaceDetectorOptions
-import com.bahercoding.smiledetector.ResultActivity
-import com.bahercoding.smiledetector.graphic.GraphicOverlay
-import com.bahercoding.smiledetector.graphic.RectangleOverlay
+import com.bahercoding.smiledetectorlib.ResultActivity
+import com.bahercoding.smiledetectorlib.graphic.GraphicOverlay
+import com.bahercoding.smiledetectorlib.graphic.RectangleOverlay
 import java.io.ByteArrayOutputStream
 import java.io.File
 import java.text.SimpleDateFormat
@@ -59,7 +59,7 @@ class CameraAnalyzer(
         }
     }
 
-    override fun onSuccess(results: List<Face>, graphicOverlay: GraphicOverlay<*>, rect: Rect , imageProxy:ImageProxy) {
+    override fun onSuccess(results: List<Face>, graphicOverlay: GraphicOverlay<*>, rect: Rect, imageProxy:ImageProxy) {
         graphicOverlay.clear()
         results.forEach {
             if (!isImageCaptured && it.smilingProbability!! >0.5){
