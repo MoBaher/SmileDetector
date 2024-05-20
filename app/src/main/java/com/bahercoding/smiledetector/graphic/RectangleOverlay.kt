@@ -16,7 +16,7 @@ class RectangleOverlay(
     private val boxPaint : Paint = Paint()
 
     init {
-        boxPaint.color = Color.GREEN
+        boxPaint.color = Color.RED
         boxPaint.style = Paint.Style.STROKE
         boxPaint.strokeWidth = 3.0f
     }
