@@ -73,4 +73,7 @@ dependencies {
     implementation("androidx.camera:camera-mlkit-vision:${camerax_version}")
     // If you want to additionally use the CameraX Extensions library
     implementation("androidx.camera:camera-extensions:${camerax_version}")
+
+    val kotlin_version = "1.9.0"
+    implementation ("org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version")
 }

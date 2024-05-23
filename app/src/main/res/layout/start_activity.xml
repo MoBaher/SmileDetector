@@ -6,38 +6,24 @@
     android:layout_height="match_parent"
     tools:context=".StartActivity">
 
-    <TextView
-        android:id="@+id/textview"
+    <Button
+        android:id="@+id/startSdkButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="FACE DETECTOR"
-        android:textSize="50dp"
-        app:layout_constraintBottom_toTopOf="@+id/result"
+        android:layout_centerInParent="true"
+        android:text="Start SDK"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:gravity="center"/>
+        app:layout_constraintTop_toBottomOf="@+id/imageView" />
 
     <ImageView
-        android:id="@+id/result"
-        android:layout_width="wrap_content"
+        android:id="@+id/imageView"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="180dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_below="@id/startSdkButton"
+        android:layout_marginTop="16dp"/>
 
-    <Button
-        android:id="@+id/btn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="240dp"
-        android:text="Start"
-        android:textSize="40dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/result" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

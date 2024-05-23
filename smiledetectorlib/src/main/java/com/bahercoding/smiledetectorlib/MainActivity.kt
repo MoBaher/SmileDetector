@@ -1,58 +1,40 @@
+
 package com.bahercoding.smiledetectorlib
 
-import android.content.Intent
 import android.content.pm.PackageManager
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
-import androidx.core.content.FileProvider
 import com.bahercoding.smiledetectorlib.databinding.ActivityMainBinding
-import java.io.File
 
 class MainActivity : AppCompatActivity() {
 
-    private lateinit var cameraManager: com.bahercoding.smiledetectorlib.camera.CameraManager
+    private lateinit var smileDetectorSDK: SmileDetectorSDK
     private val binding by lazy { ActivityMainBinding.inflate(layoutInflater) }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
 
-        cameraManager = com.bahercoding.smiledetectorlib.camera.CameraManager(
-            this,
-            binding.viewCameraPreview,
-            binding.viewGraphicOverlay,
-            this
-        )
+        smileDetectorSDK = SmileDetectorSDKHolder.sdk ?: throw IllegalStateException("SmileDetectorSDK not initialized")
+
         askCameraPermission()
     }
-
-
-
 
     private fun askCameraPermission() {
         if (arrayOf(android.Manifest.permission.CAMERA).all {
                 ContextCompat.checkSelfPermission(this, it) == PackageManager.PERMISSION_GRANTED
             }) {
-            cameraManager.cameraStart()
+            startCamera()
         } else {
             ActivityCompat.requestPermissions(this, arrayOf(android.Manifest.permission.CAMERA), 0)
         }
     }
 
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
-        if (resultCode == RESULT_OK) {
-
-            //File object of camera image
-            val file = File("/sdcard/niabsen/", "FOTO_Baher.jpg");
-
-            //Uri of camera image
-            val uri = FileProvider.getUriForFile(this, this.applicationContext.packageName + ".provider", file);
-            binding.preview.setImageURI(uri)
-        }
+    private fun startCamera() {
+        smileDetectorSDK.startCamera(binding.viewCameraPreview, binding.viewGraphicOverlay)
     }
 
     override fun onRequestPermissionsResult(
@@ -62,9 +44,87 @@ class MainActivity : AppCompatActivity() {
     ) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
         if (requestCode == 0 && ContextCompat.checkSelfPermission(this, android.Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED) {
-            cameraManager.cameraStart()
+            startCamera()
         } else {
             Toast.makeText(this, "Camera Permission Denied!", Toast.LENGTH_SHORT).show()
         }
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//package com.bahercoding.smiledetectorlib
+//
+//import android.content.pm.PackageManager
+//import android.os.Bundle
+//import android.widget.Toast
+//import androidx.appcompat.app.AppCompatActivity
+//import androidx.core.app.ActivityCompat
+//import androidx.core.content.ContextCompat
+//import com.bahercoding.smiledetectorlib.databinding.ActivityMainBinding
+//
+//class MainActivity : AppCompatActivity() {
+//
+//    private lateinit var smileDetectorSDK: SmileDetectorSDK
+//    private val binding by lazy { ActivityMainBinding.inflate(layoutInflater) }
+//
+//    override fun onCreate(savedInstanceState: Bundle?) {
+//        super.onCreate(savedInstanceState)
+//        setContentView(binding.root)
+//        smileDetectorSDK.setPreviewVieww(binding.viewCameraPreview)
+//        smileDetectorSDK.setgraphicOverlay(binding.viewGraphicOverlay)
+//
+//
+//
+//        askCameraPermission()
+//    }
+//
+//    private fun askCameraPermission() {
+//        if (arrayOf(android.Manifest.permission.CAMERA).all {
+//                ContextCompat.checkSelfPermission(this, it) == PackageManager.PERMISSION_GRANTED
+//            }) {
+//            smileDetectorSDK.startCamera()
+//        } else {
+//            ActivityCompat.requestPermissions(this, arrayOf(android.Manifest.permission.CAMERA), 0)
+//        }
+//    }
+//
+//    override fun onRequestPermissionsResult(
+//        requestCode: Int,
+//        permissions: Array<out String>,
+//        grantResults: IntArray
+//    ) {
+//        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+//        if (requestCode == 0 && ContextCompat.checkSelfPermission(this, android.Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED) {
+//            smileDetectorSDK.startCamera()
+//        } else {
+//            Toast.makeText(this, "Camera Permission Denied!", Toast.LENGTH_SHORT).show()
+//        }
+//    }
+//}

@@ -62,7 +62,7 @@ class CameraAnalyzer(
     override fun onSuccess(results: List<Face>, graphicOverlay: GraphicOverlay<*>, rect: Rect, imageProxy:ImageProxy) {
         graphicOverlay.clear()
         results.forEach {
-            if (!isImageCaptured && it.smilingProbability!! >0.5){
+            if (!isImageCaptured && it.smilingProbability!! >0.8){
                 val faceGraphic = RectangleOverlay(graphicOverlay, it, rect)
                 graphicOverlay.add(faceGraphic)
                 Toast.makeText(context, "Smile Success", Toast.LENGTH_SHORT).show()

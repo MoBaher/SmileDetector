@@ -28,10 +28,7 @@
             </intent-filter>
         </activity>
 
-        <activity
-            android:name="com.bahercoding.smiledetectorlib.MainActivity"
-            android:exported="false"/>
-        <activity android:name="com.bahercoding.smiledetectorlib.ResultActivity" />
+
 
     </application>
 
