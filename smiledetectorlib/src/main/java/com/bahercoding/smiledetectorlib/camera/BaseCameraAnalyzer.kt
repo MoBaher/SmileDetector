@@ -6,20 +6,20 @@ import androidx.camera.core.ImageAnalysis
 import androidx.camera.core.ImageProxy
 import com.google.android.gms.tasks.Task
 import com.google.mlkit.vision.common.InputImage
-import com.google.mlkit.vision.face.Face
 import com.bahercoding.smiledetectorlib.graphic.GraphicOverlay
 
-abstract class BaseCameraAnalyzer<T : List<Face>> : ImageAnalysis.Analyzer {
+abstract class BaseCameraAnalyzer<T : Any> : ImageAnalysis.Analyzer {
 
-    abstract val graphicOverlay : GraphicOverlay<*>
+    abstract val graphicOverlay: GraphicOverlay<*>
 
     @SuppressLint("UnsafeOptInUsageError")
     override fun analyze(imageProxy: ImageProxy) {
         val mediaImage = imageProxy.image
         mediaImage?.let { image ->
-            detectInImage(InputImage.fromMediaImage(image, imageProxy.imageInfo.rotationDegrees))
+            val rotationDegrees = imageProxy.imageInfo.rotationDegrees
+            detectInImage(InputImage.fromMediaImage(image, rotationDegrees))
                 .addOnSuccessListener { results ->
-                    onSuccess(results, graphicOverlay, image.cropRect , imageProxy)
+                    onSuccess(results, graphicOverlay, image.cropRect, imageProxy, rotationDegrees)
                     imageProxy.close()
                 }
                 .addOnFailureListener {
@@ -29,17 +29,17 @@ abstract class BaseCameraAnalyzer<T : List<Face>> : ImageAnalysis.Analyzer {
         }
     }
 
-    protected abstract fun detectInImage(image : InputImage) : Task<T>
+    protected abstract fun detectInImage(image: InputImage): Task<T>
 
     abstract fun stop()
 
     protected abstract fun onSuccess(
-        results : List<Face>,
+        results: T,
         graphicOverlay: GraphicOverlay<*>,
-        rect : Rect,
-        imageProxy: ImageProxy
+        rect: Rect,
+        imageProxy: ImageProxy,
+        rotationDegrees: Int
     )
 
-    protected abstract fun onFailure(e : Exception)
-
+    protected abstract fun onFailure(e: Exception)
 }

@@ -16,7 +16,7 @@ android {
     }
 
     buildTypes {
-        release {
+        getByName("release") {
             isMinifyEnabled = false
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
@@ -36,6 +36,13 @@ android {
         viewBinding = true
     }
 }
+allprojects {
+    repositories {
+        google()
+        mavenCentral()
+        maven(url = "https://jitpack.io")
+    }
+}
 
 dependencies {
 
@@ -52,4 +59,7 @@ dependencies {
     androidTestImplementation(libs.androidx.espresso.core)
     val kotlin_version = "1.8.0"
     implementation ("org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version")
+    implementation("com.github.MoBaher:SmileDetector:1.0.0")
 }
+group = "com.github.MoBaher" // Replace with your GitHub username
+version = "1.0.0" // Define the version of your SDK
