@@ -1,6 +1,7 @@
 plugins {
     alias(libs.plugins.android.library)
     alias(libs.plugins.jetbrains.kotlin.android)
+    id("maven-publish")
 
 }
 
@@ -36,13 +37,7 @@ android {
         viewBinding = true
     }
 }
-allprojects {
-    repositories {
-        google()
-        mavenCentral()
-        maven(url = "https://jitpack.io")
-    }
-}
+
 
 dependencies {
 
@@ -59,7 +54,18 @@ dependencies {
     androidTestImplementation(libs.androidx.espresso.core)
     val kotlin_version = "1.8.0"
     implementation ("org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version")
-    implementation("com.github.MoBaher:SmileDetector:1.0.0")
+
 }
-group = "com.github.MoBaher" // Replace with your GitHub username
-version = "1.0.0" // Define the version of your SDK
+publishing {
+    publications {
+        create<MavenPublication>("release") {
+            groupId = "com.github.MoBaher"
+            artifactId = "smiledetectorlib"
+            version = "1.0.0"
+
+            from(components.release)
+        }
+    }
+
+
+}
