@@ -21,7 +21,7 @@ object CameraUtils {
         boundingBoxT : Rect
     ) : RectF {
         fun isLandScapeMode() : Boolean {
-            return overlay.context.resources.configuration.orientation == Configuration.ORIENTATION_LANDSCAPE
+            return overlay.context.resources.configuration.orientation == Configuration.ORIENTATION_PORTRAIT
         }
 
         fun whenLandScapeModeWidth() : Float {

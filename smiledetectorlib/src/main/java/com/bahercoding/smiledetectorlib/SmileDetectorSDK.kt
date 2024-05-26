@@ -1,60 +1,24 @@
 package com.bahercoding.smiledetectorlib
 
-import androidx.camera.view.PreviewView
-import com.bahercoding.smiledetectorlib.graphic.GraphicOverlay
-
-
-
 
 import android.app.Activity
-import androidx.lifecycle.LifecycleOwner
-import com.bahercoding.smiledetectorlib.camera.CameraManager
+import android.content.Intent
 
-class SmileDetectorSDK private constructor(
-    private val context: Activity,
-    private val sdkCallback: SdkCallback,
-    private val lifecycleOwner: LifecycleOwner
-) {
-    private lateinit var cameraManager: CameraManager
-
-    fun startCamera(previewView: PreviewView, graphicOverlay: GraphicOverlay<*>) {
-        cameraManager = CameraManager(context, previewView, graphicOverlay, lifecycleOwner)
-        cameraManager.cameraStart()
-    }
-
-    fun stopCamera() {
-        cameraManager.cameraStop()
-    }
-
-    fun toggleCamera() {
-        cameraManager.changeCamera()
-    }
+class SmileDetectorSDK {
 
     class Builder(private val context: Activity) {
         private var sdkCallback: SdkCallback? = null
-        private var lifecycleOwner: LifecycleOwner? = null
-
         fun setSdkCallback(callback: SdkCallback) = apply {
             this.sdkCallback = callback
         }
 
-        fun setLifecycleOwner(lifecycleOwner: LifecycleOwner) = apply {
-            this.lifecycleOwner = lifecycleOwner
-        }
+        fun build() {
+            callbackHolder.callback = sdkCallback
 
-        fun build(): SmileDetectorSDK {
             if (sdkCallback == null) {
                 throw IllegalArgumentException("SdkCallback must be set")
             }
-            if (lifecycleOwner == null) {
-                throw IllegalArgumentException("LifecycleOwner must be set")
-            }
-
-            return SmileDetectorSDK(
-                context,
-                sdkCallback!!,
-                lifecycleOwner!!
-            )
+            context.startActivity(Intent(context, MainActivity::class.java))
         }
     }
 }

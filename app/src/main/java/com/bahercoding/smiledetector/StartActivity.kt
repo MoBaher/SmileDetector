@@ -4,16 +4,21 @@ package com.bahercoding.smiledetector
 import android.content.Intent
 import android.graphics.BitmapFactory
 import android.os.Bundle
+import android.view.View
 import android.widget.Button
 import android.widget.ImageView
+import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.isVisible
 import com.bahercoding.smiledetectorlib.*
+import java.lang.Boolean.FALSE
 
 class StartActivity : AppCompatActivity(), SdkCallback {
 
     private lateinit var startSdkButton: Button
     private lateinit var imageView: ImageView
+    private lateinit var canceled : TextView
     private lateinit var smileDetectorSDK: SmileDetectorSDK
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -22,19 +27,19 @@ class StartActivity : AppCompatActivity(), SdkCallback {
 
         startSdkButton = findViewById(R.id.startSdkButton)
         imageView = findViewById(R.id.imageView)
+        canceled = findViewById(R.id.canceled)
 
-        smileDetectorSDK = SmileDetectorSDK.Builder(this)
-            .setSdkCallback(this)
-            .setLifecycleOwner(this)
-            .build()
+
 
         startSdkButton.setOnClickListener {
-            startSmileDetectorSDK()
+            SmileDetectorSDK.Builder(this)
+                .setSdkCallback(this)
+                .build()
         }
     }
 
     private fun startSmileDetectorSDK() {
-        SmileDetectorSDKHolder.sdk = smileDetectorSDK
+      //  SmileDetectorSDKHolder.sdk = smileDetectorSDK
         val intent = Intent(this, com.bahercoding.smiledetectorlib.MainActivity::class.java)
         startActivity(intent)
     }
@@ -42,13 +47,26 @@ class StartActivity : AppCompatActivity(), SdkCallback {
     override fun onSuccess(response: SuccessResponse) {
         val bitmap = BitmapFactory.decodeByteArray(response.result, 0, response.result.size)
         runOnUiThread {
+            Toast.makeText(this, "Success",Toast.LENGTH_SHORT).show()
+
             imageView.setImageBitmap(bitmap)
+           if (!imageView.isVisible){
+               imageView.visibility= View.VISIBLE
+
+           }
+            if (canceled.isVisible){
+                canceled.visibility= View.INVISIBLE
+
+            }
         }
     }
 
     override fun onFailure(response: FailedResponse) {
         runOnUiThread {
-            Toast.makeText(this, "Failed",Toast.LENGTH_SHORT).show()
+            imageView.visibility= View.INVISIBLE
+            canceled.visibility=View.VISIBLE
+
+            Toast.makeText(this, "Canceled",Toast.LENGTH_SHORT).show()
         }
     }
 }

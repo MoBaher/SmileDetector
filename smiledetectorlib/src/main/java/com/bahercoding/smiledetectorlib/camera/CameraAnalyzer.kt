@@ -9,12 +9,9 @@ import android.graphics.ImageFormat
 import android.graphics.Matrix
 import android.graphics.Rect
 import android.graphics.YuvImage
-import android.provider.MediaStore
 import android.util.Log
 import android.widget.Toast
 import androidx.camera.core.ImageProxy
-import androidx.core.app.ActivityCompat.startActivityForResult
-import androidx.core.content.FileProvider
 import com.google.android.gms.tasks.Task
 import com.google.mlkit.vision.common.InputImage
 import com.google.mlkit.vision.face.Face
@@ -24,14 +21,11 @@ import com.bahercoding.smiledetectorlib.ResultActivity
 import com.bahercoding.smiledetectorlib.graphic.GraphicOverlay
 import com.bahercoding.smiledetectorlib.graphic.RectangleOverlay
 import java.io.ByteArrayOutputStream
-import java.io.File
-import java.text.SimpleDateFormat
-import java.util.Date
 
 class CameraAnalyzer(
     private val context: Activity,
     private val overlay: GraphicOverlay<*>
-) : BaseCameraAnalyzer<List<Face>>(){
+) : BaseCameraAnalyzer<List<Face>>() {
 
     override val graphicOverlay: GraphicOverlay<*>
         get() = overlay
@@ -54,15 +48,16 @@ class CameraAnalyzer(
     override fun stop() {
         try {
             detector.close()
-        } catch (e : Exception) {
-            Log.e(TAG , "stop : $e")
+        } catch (e: Exception) {
+            Log.e(TAG, "stop : $e")
         }
     }
 
-    override fun onSuccess(results: List<Face>, graphicOverlay: GraphicOverlay<*>, rect: Rect, imageProxy:ImageProxy) {
+    override fun onSuccess(results: List<Face>, graphicOverlay: GraphicOverlay<*>, rect: Rect, imageProxy: ImageProxy) {
         graphicOverlay.clear()
         results.forEach {
-            if (!isImageCaptured && it.smilingProbability!! >0.8){
+            if (!isImageCaptured && it.smilingProbability!! > 0.8) {
+
                 val faceGraphic = RectangleOverlay(graphicOverlay, it, rect)
                 graphicOverlay.add(faceGraphic)
                 Toast.makeText(context, "Smile Success", Toast.LENGTH_SHORT).show()
@@ -98,6 +93,7 @@ class CameraAnalyzer(
         bitmap.compress(Bitmap.CompressFormat.JPEG, 100, stream)
         return stream.toByteArray()
     }
+
     @SuppressLint("UnsafeOptInUsageError")
     fun ImageProxy.toBitmap(): Bitmap? {
         val image = this.image ?: return null
@@ -121,13 +117,12 @@ class CameraAnalyzer(
         val imageBytes = out.toByteArray()
         val bitmap = BitmapFactory.decodeByteArray(imageBytes, 0, imageBytes.size)
 
-        return rotateBitmap(bitmap, 270)
+        return rotateBitmap(bitmap, this.imageInfo.rotationDegrees)
     }
+
     private fun rotateBitmap(bitmap: Bitmap, rotationDegrees: Int): Bitmap {
         val matrix = Matrix()
         matrix.postRotate(rotationDegrees.toFloat())
         return Bitmap.createBitmap(bitmap, 0, 0, bitmap.width, bitmap.height, matrix, true)
     }
-
-
 }

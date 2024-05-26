@@ -10,7 +10,7 @@ import java.lang.Boolean.TRUE
 
 class ResultActivity : AppCompatActivity() {
 
-    private var sdkCallback: SdkCallback? = null
+    private var sdkCallback: SdkCallback? = callbackHolder.callback
     private var responseListener: SdkResponse.ResponseListener? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {

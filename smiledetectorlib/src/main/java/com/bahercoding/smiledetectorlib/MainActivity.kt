@@ -7,18 +7,16 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+import com.bahercoding.smiledetectorlib.camera.CameraManager
 import com.bahercoding.smiledetectorlib.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
 
-    private lateinit var smileDetectorSDK: SmileDetectorSDK
     private val binding by lazy { ActivityMainBinding.inflate(layoutInflater) }
-
+    private lateinit var cameraManager: CameraManager
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
-
-        smileDetectorSDK = SmileDetectorSDKHolder.sdk ?: throw IllegalStateException("SmileDetectorSDK not initialized")
 
         askCameraPermission()
     }
@@ -34,7 +32,8 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun startCamera() {
-        smileDetectorSDK.startCamera(binding.viewCameraPreview, binding.viewGraphicOverlay)
+        cameraManager = CameraManager(this, binding.viewCameraPreview, binding.viewGraphicOverlay, this)
+        cameraManager.cameraStart()
     }
 
     override fun onRequestPermissionsResult(
