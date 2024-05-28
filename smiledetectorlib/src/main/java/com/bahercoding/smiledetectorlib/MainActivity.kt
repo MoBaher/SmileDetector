@@ -18,8 +18,6 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
-//        var viewCameraPreview:PreviewView = binding.viewCameraPreview
-//        var
 
         askCameraPermission()
     }
@@ -35,10 +33,9 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun startCamera() {
-        if (binding.viewCameraPreview!=null && binding.viewGraphicOverlay!=null){
+
             cameraManager = CameraManager(this, binding.viewCameraPreview, binding.viewGraphicOverlay, this)
             cameraManager.cameraStart()
-        }
 
     }
 
