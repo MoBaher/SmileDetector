@@ -6,12 +6,31 @@
     android:layout_height="match_parent"
     tools:context=".StartActivity">
 
+    <CheckBox
+        android:id="@+id/blue"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Blue Rectangle"
+        android:textSize="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/invisable" />
+
+    <CheckBox
+        android:id="@+id/invisable"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Invisable Rectangle"
+        android:textSize="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <Button
         android:id="@+id/startSdkButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
-        android:layout_marginBottom="76dp"
         android:text="Start SDK"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -23,10 +42,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/startSdkButton"
         app:layout_constraintBottom_toTopOf="@+id/startSdkButton"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/canceled"
@@ -38,9 +54,8 @@
         android:visibility="invisible"
 
         app:layout_constraintBottom_toTopOf="@+id/startSdkButton"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:layout_editor_absoluteX="114dp" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

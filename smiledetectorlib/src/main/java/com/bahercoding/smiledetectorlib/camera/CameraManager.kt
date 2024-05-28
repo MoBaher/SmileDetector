@@ -19,7 +19,8 @@ class CameraManager(
     private val context : Activity,
     private val previewView : PreviewView,
     private val graphicOverlay: GraphicOverlay<*>,
-    private val lifecycleOwner : LifecycleOwner
+    private val lifecycleOwner : LifecycleOwner,
+//    private val rectangleColor:Int
 ) {
 
     private lateinit var cameraProvider: ProcessCameraProvider

@@ -6,6 +6,7 @@ import android.graphics.BitmapFactory
 import android.os.Bundle
 import android.view.View
 import android.widget.Button
+import android.widget.CheckBox
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
@@ -13,12 +14,15 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
 import com.bahercoding.smiledetectorlib.*
 import java.lang.Boolean.FALSE
+import java.lang.Boolean.TRUE
 
 class StartActivity : AppCompatActivity(), SdkCallback {
 
     private lateinit var startSdkButton: Button
     private lateinit var imageView: ImageView
     private lateinit var canceled : TextView
+    private lateinit var blue:CheckBox
+    private lateinit var invisable:CheckBox
     private lateinit var smileDetectorSDK: SmileDetectorSDK
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -28,12 +32,16 @@ class StartActivity : AppCompatActivity(), SdkCallback {
         startSdkButton = findViewById(R.id.startSdkButton)
         imageView = findViewById(R.id.imageView)
         canceled = findViewById(R.id.canceled)
+        blue=findViewById(R.id.blue)
+        invisable=findViewById(R.id.invisable)
 
 
 
         startSdkButton.setOnClickListener {
             SmileDetectorSDK.Builder(this)
                 .setSdkCallback(this)
+                .setRectangleColorBlue(blue.isChecked)
+                .setRectangleInvisible(invisable.isChecked)
                 .build()
         }
     }

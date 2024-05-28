@@ -56,16 +56,23 @@ dependencies {
     implementation ("org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version")
 
 }
-publishing {
-    publications {
-        create<MavenPublication>("release") {
-            groupId = "com.github.MoBaher"
-            artifactId = "smiledetectorlib"
-            version = "1.0.0"
-
-            from(components.release)
-        }
-    }
-
-
-}
+//publishing {
+//    publications {
+//        register<MavenPublication>("release") {
+//            groupId = "com.github.MoBaher"
+//            artifactId = project.archivesName.get()
+//            version = project.version.toString()
+//            pom.packaging = "aar"
+//            artifact("$buildDir/outputs/aar/smiledetectorlib-release.aar")
+//            afterEvaluate {
+//                from(components["release"])
+//            }
+//        }
+//    }
+//
+//    repositories {
+//        maven {
+//            url = uri("https://jitpack.io")
+//        }
+//    }
+//}

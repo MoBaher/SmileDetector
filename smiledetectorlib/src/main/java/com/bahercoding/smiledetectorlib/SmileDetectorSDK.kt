@@ -3,6 +3,10 @@ package com.bahercoding.smiledetectorlib
 
 import android.app.Activity
 import android.content.Intent
+import android.graphics.Color
+import com.bahercoding.smiledetectorlib.SmileDetectorManager.isRectangleVisible
+import com.bahercoding.smiledetectorlib.SmileDetectorManager.rectangleColor
+import java.lang.Boolean.TRUE
 
 class SmileDetectorSDK {
 
@@ -11,6 +15,12 @@ class SmileDetectorSDK {
         fun setSdkCallback(callback: SdkCallback) = apply {
             this.sdkCallback = callback
         }
+        fun setRectangleColorBlue(isBlue: Boolean) = apply {
+            rectangleColor = if (isBlue) Color.BLUE else Color.RED
+        }
+        fun setRectangleInvisible(isInvisible: Boolean) = apply {
+            isRectangleVisible = !isInvisible
+        }
 
         fun build() {
             callbackHolder.callback = sdkCallback
@@ -18,8 +28,12 @@ class SmileDetectorSDK {
             if (sdkCallback == null) {
                 throw IllegalArgumentException("SdkCallback must be set")
             }
+            SmileDetectorManager.rectangleColor = rectangleColor
+            SmileDetectorManager.isRectangleVisible = isRectangleVisible
             context.startActivity(Intent(context, MainActivity::class.java))
         }
+
+
     }
 }
 
