@@ -51,10 +51,6 @@ dependencies {
     implementation(libs.androidx.camera.lifecycle)
     implementation(libs.play.services.mlkit.face.detection)
     implementation(libs.play.services.vision.common)
-    implementation(project(":smiledetectorlib"))
-    implementation(project(":smiledetectorlib"))
-    implementation(project(":smiledetectorlib"))
-    implementation(project(":smiledetectorlib"))
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
@@ -76,4 +72,5 @@ dependencies {
 
     val kotlin_version = "1.9.0"
     implementation ("org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version")
+    implementation ("com.github.MoBaher:SmileDetector:1.0.2")
 }

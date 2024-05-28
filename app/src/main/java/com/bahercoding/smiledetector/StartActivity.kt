@@ -12,7 +12,11 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
-import com.bahercoding.smiledetectorlib.*
+import com.bahercoding.smiledetectorlib.FailedResponse
+import com.bahercoding.smiledetectorlib.SdkCallback
+import com.bahercoding.smiledetectorlib.SmileDetectorSDK
+import com.bahercoding.smiledetectorlib.SuccessResponse
+//import com.bahercoding.smiledetectorlib.*
 import java.lang.Boolean.FALSE
 import java.lang.Boolean.TRUE
 
