@@ -37,7 +37,15 @@ android {
         viewBinding = true
     }
 }
-
+publishing{
+    publications{
+        register<MavenPublication>("release"){
+            afterEvaluate {
+                from(components["release"])
+            }
+        }
+    }
+}
 
 dependencies {
 
