@@ -5,6 +5,7 @@ import android.content.pm.PackageManager
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.camera.view.PreviewView
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import com.bahercoding.smiledetectorlib.camera.CameraManager
@@ -17,6 +18,8 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
+//        var viewCameraPreview:PreviewView = binding.viewCameraPreview
+//        var
 
         askCameraPermission()
     }
@@ -32,8 +35,11 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun startCamera() {
-        cameraManager = CameraManager(this, binding.viewCameraPreview, binding.viewGraphicOverlay, this)
-        cameraManager.cameraStart()
+        if (binding.viewCameraPreview!=null && binding.viewGraphicOverlay!=null){
+            cameraManager = CameraManager(this, binding.viewCameraPreview, binding.viewGraphicOverlay, this)
+            cameraManager.cameraStart()
+        }
+
     }
 
     override fun onRequestPermissionsResult(
