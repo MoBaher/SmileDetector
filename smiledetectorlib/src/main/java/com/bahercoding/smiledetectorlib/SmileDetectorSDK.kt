@@ -30,7 +30,7 @@ class SmileDetectorSDK {
             }
             SmileDetectorManager.rectangleColor = rectangleColor
             SmileDetectorManager.isRectangleVisible = isRectangleVisible
-            context.startActivity(Intent(context, MainActivity::class.java))
+            context.startActivity(Intent(context,com.bahercoding.smiledetectorlib.MainActivity::class.java))
         }
 
 
