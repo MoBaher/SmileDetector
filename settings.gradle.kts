@@ -27,4 +27,4 @@ dependencyResolutionManagement {
 
 rootProject.name = "Smile Detector"
 include(":app")
-//include(":smiledetectorlib")
+include(":smiledetectorlib")
